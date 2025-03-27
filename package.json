@@ -1,0 +1,21 @@
+{
+  "name": "workshop-stripe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:hosted-page": "npm start --workspace=hosted-page",
+    "start:embedded-form": "npm start --workspace=embedded-form",
+    "start:elements-form": "npm start --workspace=elements-form",
+    "start:subscription-example": "npm start --workspace=subscription-example"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}

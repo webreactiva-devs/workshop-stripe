@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stripe Embedded Forms Demo</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      background-color: #635bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #4b45c6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Stripe Embedded Forms Demo</h1>
+  
+  <div class="card">
+    <h2>Proceso de pago con Stripe</h2>
+    <p>Esta es una demostración de integración de formularios de pago embebidos de Stripe.</p>
+    <a href="/checkout"><button>Ir al checkout</button></a>
+  </div>
+
+  <div class="card">
+    <h2>Sobre esta demo</h2>
+    <p>Esta aplicación demuestra cómo integrar el sistema de pago de Stripe usando formularios embebidos 
+       directamente en tu sitio web, proporcionando una experiencia de pago sin redirecciones.</p>
+    <p>También incluye una implementación de webhooks para procesar eventos de Stripe.</p>
+  </div>
+</body>
+</html>

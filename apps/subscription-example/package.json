@@ -1,0 +1,15 @@
+{
+  "name": "subscription-example",
+  "version": "1.0.0",
+  "description": "Integración con formulario embebido de Stripe v2",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env --watch index.js",
+    "dev": "node --env-file=.env --watch index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "stripe": "^14.5.0"
+  }
+}

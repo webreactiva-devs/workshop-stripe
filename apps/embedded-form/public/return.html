@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pago Completado</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f0f0f0;
+    }
+    .status {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="status">
+    <h1>Estado del Pago</h1>
+    <div id="status-message"></div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+
+    if (sessionId) {
+      fetch(`/session-status?session_id=${sessionId}`)
+        .then(res => res.json())
+        .then(data => {
+          const message = document.getElementById('status-message');
+          if (data.status === 'complete') {
+            message.textContent = '¡Pago completado con éxito!';
+          } else {
+            message.textContent = 'Pago pendiente o fallido.';
+          }
+        });
+    }
+  </script>
+</body>
+</html>

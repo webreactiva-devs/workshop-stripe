@@ -1,0 +1,21 @@
+{
+  "name": "elements-form",
+  "version": "1.0.0",
+  "description": "Stripe Elements Forms integration example",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node --env-file=.env --watch src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["stripe", "payment", "checkout", "embedded-forms"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "stripe": "^14.5.0",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "nodemailer": "^6.9.7"
+  }
+}

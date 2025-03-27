@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Embebido de Stripe v2</title>
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f0f0f0;
+    }
+    #checkout {
+      display: none; /* Inicialmente oculto */
+      width: 600px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .btn-checkout {
+      background: #635bff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn-checkout:hover {
+      background: #4b45c6;
+    }
+  </style>
+</head>
+<body>
+  <div class="">
+    <button id="btn-checkout" class="btn-checkout">Pagar ahora</button>
+    <div id="checkout"></div>
+  </div>
+
+  <script>
+    const stripe = Stripe('pk_test_I5eMtE2GqC8UuHb7zUAxzX3X');
+    let checkout = null;
+    
+    async function initialize() {
+      try {
+        const fetchClientSecret = async () => {
+          const response = await fetch("/create-checkout-session", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            }
+          });
+          
+          if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+          }
+          
+          const { clientSecret } = await response.json();
+          return clientSecret;
+        };
+
+        // Mostrar el contenedor del checkout
+        document.getElementById('checkout').style.display = 'block';
+        // Ocultar el botón
+        document.getElementById('btn-checkout').style.display = 'none';
+
+        checkout = await stripe.initEmbeddedCheckout({
+          fetchClientSecret,
+        });
+
+        // Mount Checkout
+        checkout.mount('#checkout');
+        
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('checkout').innerHTML = 
+          `<p style="color: red">Error: ${error.message}</p>`;
+      }
+    }
+    
+    // Event listener para el botón
+    document.getElementById('btn-checkout').addEventListener('click', initialize);
+  </script>
+</body>
+</html>
